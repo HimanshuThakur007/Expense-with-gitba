@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Expense.github.io/static/css/main.5a8a74db.css",
+    "main.js": "/Expense.github.io/static/js/main.13b66aad.js",
+    "index.html": "/Expense.github.io/index.html",
+    "main.5a8a74db.css.map": "/Expense.github.io/static/css/main.5a8a74db.css.map",
+    "main.13b66aad.js.map": "/Expense.github.io/static/js/main.13b66aad.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a8a74db.css",
+    "static/js/main.13b66aad.js"
+  ]
+}
