@@ -1,0 +1,153 @@
+import React from 'react'
+import ExpenseItem from './ExpenseItem'
+import Card from '../UI/Card'
+import './Expense.css'
+
+const Expense = (props) => {
+  return (
+    <Card className='expenses'>
+      <ExpenseItem
+      title = {props.item[0].title}
+      amount = {props.item[0].amount}
+      date = {props.item[0].date}
+      />
+      <ExpenseItem
+      title = {props.item[1].title}
+      amount = {props.item[1].amount}
+      date = {props.item[1].date}
+      />
+      <ExpenseItem
+      title = {props.item[2].title}
+      amount = {props.item[2].amount}
+      date = {props.item[2].date}
+      />
+      <ExpenseItem
+      title = {props.item[3].title}
+      amount = {props.item[3].amount}
+      date = {props.item[3].date}
+      />
+    </Card>
+  )
+}
+
+export default Expense
+
+import React from 'react'
+import ExpenseDate from './ExpenseDate'
+import Card from '../UI/Card'
+import './ExpenseItem.css'
+
+const ExpenseItem = (props) => {
+  return (
+    <Card className='expense-item'>
+      <div>
+    <ExpenseDate date = {props.date}/>
+    </div>
+    
+    <div className='expense-item__description'>
+        <h2>{props.title}</h2>
+      <div className='expense-item__price'>{props.amount}Rs</div>
+    </div>
+    </Card>
+    
+  )
+}
+
+export default ExpenseItem
+
+
+import React from 'react'
+import './ExpenseDate.css'
+
+const ExpenseDate = (props) => {
+  const month = props.date.toLocaleString('en-US', {month: 'long'})
+  const day = props.date.toLocaleString('en-US', {day: '2-digit'})
+  const year = props.date.getFullYear();
+  return (
+    <div className='expense-date'>
+      <div className='expense-date__month '>{month}</div>
+      <div className='expense-date__year'>{day}</div>
+      <div className='expense-date__day'>{year}</div>
+    </div>
+  )
+}
+
+export default ExpenseDate
+
+
+<NewExpense/>
+<Expense item = {expenses}/>
+
+
+
+import React, {useState} from 'react'
+import './ExpenseForm.css'
+
+const ExpenseForm = () => {
+
+const [title, setTitle] = useState('');
+const [amount, setAmount] = useState('');
+const [date, setDate] = useState('')
+
+
+    const titleChangeHandler = (e) => {
+        setTitle(e.target.value)
+    };
+    const amountChangeHandler = (e) =>{
+        setAmount(e.target.value)
+    };
+    const dateChangeHandlern = (e) =>{
+        setDate(e.target.value)
+    }
+    const submitHandler = (e) =>{
+        e.preventDefault();
+        const expenseData = {
+            title,amount,date
+        };
+        setAmount('');
+        setDate('');
+        setTitle('');
+        console.log(expenseData)
+    }
+  return (
+    <div>
+        <form onSubmit={submitHandler}>
+            <div className='new-expense__controls'>
+                <div className='new-expense__control'>
+                    <label>Title</label>
+                    <input type = 'text' value={title} onChange={titleChangeHandler}/>
+                </div>
+                <div className='new-expense__control'>
+                    <label>Amount</label>
+                    <input type = 'number' min = '0.01' step = '0.01' value={amount} onChange={amountChangeHandler} />
+                </div>
+                <div className='new-expense__control'>
+                    <label>Date</label>
+                    <input type = 'date' min= '2019-01-01' max = '2022-12-31' value={date} onChange={dateChangeHandlern}/>
+                </div>
+            </div>
+            <div className='new-expense__actions'>
+                <button type = 'submit'>Add Expense</button>
+            </div>
+        </form>
+    </div>
+  )
+}
+
+export default ExpenseForm
+
+
+
+import React from 'react'
+import './NewExpense.css'
+import ExpenseForm from './ExpenseForm'
+
+const NewExpense = () => {
+  return (
+    <div className='new-expense'>
+        <ExpenseForm/>
+    </div>
+  )
+}
+
+export default NewExpense
